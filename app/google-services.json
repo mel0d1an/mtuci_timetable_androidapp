@@ -1,0 +1,143 @@
+{
+  "project_info": {
+    "project_number": "446984498433",
+    "firebase_url": "https://mtuci-schedule-2690e.firebaseio.com",
+    "project_id": "mtuci-schedule-2690e",
+    "storage_bucket": "mtuci-schedule-2690e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446984498433:android:afac45e3d9d49860ddbf00",
+        "android_client_info": {
+          "package_name": "com.example.mtuci_schedule"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "446984498433-gli86j6p8opsvqnqkieqt5e37ra1k25d.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mtuci_schedule",
+            "certificate_hash": "46eeb8b411b3ab4e3e43ae513b38d61784ffab25"
+          }
+        },
+        {
+          "client_id": "446984498433-gh0n8j7j1ar5t9kafk98igt2r0p512rj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLrNFY3l3WRqJcru3KZbTKvCtmI9dGgpg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "446984498433-gh0n8j7j1ar5t9kafk98igt2r0p512rj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "446984498433-en7djnac6673b0upbhjj2hio48eqshia.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mtuci.ScheduleApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446984498433:android:41aba499a85a09f2ddbf00",
+        "android_client_info": {
+          "package_name": "com.example.mtuci_schedule_all"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "446984498433-k1vj0pt7c6e12k310d6idoqdhms4qjvc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mtuci_schedule_all",
+            "certificate_hash": "46eeb8b411b3ab4e3e43ae513b38d61784ffab25"
+          }
+        },
+        {
+          "client_id": "446984498433-gh0n8j7j1ar5t9kafk98igt2r0p512rj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLrNFY3l3WRqJcru3KZbTKvCtmI9dGgpg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "446984498433-gh0n8j7j1ar5t9kafk98igt2r0p512rj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "446984498433-en7djnac6673b0upbhjj2hio48eqshia.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mtuci.ScheduleApp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446984498433:android:dc55f2e6d9b639fcddbf00",
+        "android_client_info": {
+          "package_name": "com.example.mtuci_timetable"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "446984498433-f0rii9brvosbu1fa3kdrfavj5dnhv8lo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mtuci_timetable",
+            "certificate_hash": "b4e456a523610b6e5f1ee497b8c9277f172d0425"
+          }
+        },
+        {
+          "client_id": "446984498433-gh0n8j7j1ar5t9kafk98igt2r0p512rj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLrNFY3l3WRqJcru3KZbTKvCtmI9dGgpg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "446984498433-gh0n8j7j1ar5t9kafk98igt2r0p512rj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "446984498433-en7djnac6673b0upbhjj2hio48eqshia.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mtuci.ScheduleApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

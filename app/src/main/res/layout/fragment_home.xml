@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <HorizontalScrollView
+                android:id="@+id/horizontalScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+
+                android:background="@color/colorBrown"
+                android:scrollbars="none">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/buttonMonday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginRight="25dp"
+                        android:background="@color/colorTransparent"
+                        android:text="Понедельник"
+                        android:textSize="20sp" />
+
+
+                    <Button
+                        android:id="@+id/buttonTuesday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="25dp"
+                        android:layout_toRightOf="@+id/buttonMonday"
+                        android:background="@color/colorTransparent"
+                        android:text="Вторник"
+                        android:textSize="20sp" />
+
+
+                    <Button
+                        android:id="@+id/buttonWednesday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="25dp"
+                        android:layout_toRightOf="@+id/buttonTuesday"
+                        android:background="@color/colorTransparent"
+                        android:text="Среда"
+                        android:textSize="20sp" />
+
+
+                    <Button
+                        android:id="@+id/buttonThursday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="25dp"
+                        android:layout_toRightOf="@+id/buttonWednesday"
+                        android:background="@color/colorTransparent"
+                        android:text="Четверг"
+                        android:textSize="20sp" />
+
+                    <Button
+                        android:id="@+id/buttonFriday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="15dp"
+                        android:layout_toRightOf="@+id/buttonThursday"
+                        android:background="@color/colorTransparent"
+                        android:text="Пятница"
+                        android:textSize="20sp" />
+
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerviewTimetable"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
