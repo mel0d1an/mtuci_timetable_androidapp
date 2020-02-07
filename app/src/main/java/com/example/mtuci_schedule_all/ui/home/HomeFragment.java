@@ -34,19 +34,16 @@ public class HomeFragment extends Fragment {
 
     Calendar calendar = Calendar.getInstance();
     int dayNum = (calendar.get(Calendar.DAY_OF_WEEK));
-    String xuy  =  "" + (dayNum-2);
+    String day = "" + (dayNum - 2);
 
 
-    DatabaseReference myRef = database.getReference("groups").child("0").child("timetable").child("0").child(xuy);
+    DatabaseReference myRef = database.getReference("groups").child("0").child("timetable").child("0").child(day);
 
-
-    private HomeViewModel homeViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         final RecyclerView recyclerviewTimetable = (RecyclerView) root.findViewById(R.id.recyclerviewTimetable);
         list = new ArrayList<TimeTable>();
@@ -68,9 +65,10 @@ public class HomeFragment extends Fragment {
                         for (DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                             TimeTable p = dataSnapshot1.getValue(TimeTable.class);
                             list.add(p);
-
-
+                            String strtext=getArguments().getString("message");
+                            System.out.println(strtext);
                         }
+
                         recyclerviewTimetable.setLayoutManager(new LinearLayoutManager(getContext()));
                         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
                         recyclerviewTimetable.setLayoutManager(layoutManager);
@@ -85,7 +83,6 @@ public class HomeFragment extends Fragment {
 
             }
         });
-
 
 
         buttonTuesday.setOnClickListener(new View.OnClickListener() {
