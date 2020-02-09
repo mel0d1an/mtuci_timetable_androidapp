@@ -132,13 +132,12 @@ public class ToolsFragment extends Fragment {
                 final Spinner spinnerGroups = (Spinner) root.findViewById(R.id.groupSpinner);
 
 
-                ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,facultyList);
-                LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+                ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item,facultyList);
+                LTRadapter.setDropDownViewResource(R.layout.spinner_item);
                 spinnerFaculty.setAdapter(LTRadapter);
 
                 final ArrayList<String> group_ids;
                 group_ids = new ArrayList<String>();
-
                 spinnerFaculty.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> adapterView, View view, final int position, long id) {
@@ -163,8 +162,8 @@ public class ToolsFragment extends Fragment {
 
                                 }
 
-                                ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,group_list);
-                                LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+                                ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(getActivity(), R.layout.spinner_item,group_list);
+                                LTRadapter.setDropDownViewResource(R.layout.spinner_item);
                                 spinnerGroups.setAdapter(LTRadapter);
 
                                 File file = new File( "config.json");
