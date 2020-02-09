@@ -7,43 +7,99 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
-import androidx.annotation.StringRes;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.mtuci_schedule_all.Faculty;
 import com.example.mtuci_schedule_all.FacultyList;
-import com.example.mtuci_schedule_all.GroupList;
 import com.example.mtuci_schedule_all.R;
-import com.example.mtuci_schedule_all.TimeTable;
-import com.example.mtuci_schedule_all.TimetableAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.annotations.NotNull;
+import com.google.gson.Gson;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class ToolsFragment extends Fragment {
 
 
-    ArrayList<GroupList> groupList;
     ArrayList<String> facultyList;
     ArrayList<String> facultyID;
 
+
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
+    public void save(String text) {
+        FileOutputStream fos = null;
 
-    public View onCreateView(@NonNull LayoutInflater inflater,
+        try {
+            fos = getContext().openFileOutput("config.json", MODE_PRIVATE);
+            fos.write(text.getBytes());
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
+    public String load() {
+        FileInputStream fis = null;
+
+        try {
+            fis = getContext().openFileInput(getContext().getFilesDir()+"config.json");
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br = new BufferedReader(isr);
+            StringBuilder sb = new StringBuilder();
+            String text;
+
+            while ((text = br.readLine()) != null) {
+                sb.append(text).append("\n");
+            }
+
+            return sb.toString();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        } finally {
+            if (fis != null) {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        return "123";
+    }
+
+
+        public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
 
@@ -76,9 +132,9 @@ public class ToolsFragment extends Fragment {
 
                 spinnerFaculty.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
-                    public void onItemSelected(AdapterView<?> adapterView, View view, int position, long id) {
+                    public void onItemSelected(AdapterView<?> adapterView, View view, final int position, long id) {
 
-                        String faculty_id = ""+position;
+                        final String faculty_id = ""+position;
                         final ArrayList<String> group_list;
                         group_list = new ArrayList<String>();
                         DatabaseReference facultyInfo = database.getReference("faculty_list").child(faculty_id).child("group_list");
@@ -87,16 +143,24 @@ public class ToolsFragment extends Fragment {
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 for (@NonNull DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()) {
                                     group_list.add(dataSnapshot1.getValue().toString());
-                                    System.out.println(group_list);
                                 }
 
                                 ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,group_list);
                                 LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
                                 spinnerGroups.setAdapter(LTRadapter);
-                                Fragment fragment = new Fragment();
-                                Bundle bundle = new Bundle();
-                                bundle.putString("message", "XUY BOLSHOI");
-                                fragment.setArguments(bundle);
+                                File file = new File( getContext().getFilesDir() + "config.json");
+                                System.out.println(file.toString());
+                                try {
+                                    file.createNewFile();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                save(faculty_id);
+                                System.out.println(faculty_id);
+                                System.out.println(load());
+                                System.out.println(getContext().getFilesDir());
+
+
 
 
                             }
