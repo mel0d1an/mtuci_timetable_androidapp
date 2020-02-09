@@ -2,6 +2,7 @@ package com.example.mtuci_schedule_all.ui.home;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,11 +29,11 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class HomeFragment extends Fragment {
 
@@ -80,19 +81,25 @@ public class HomeFragment extends Fragment {
         }
         return "0";
     }
+    public String IsOdd(){
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(new Date());
+        return calendar.get(Calendar.WEEK_OF_MONTH) % 2+"" ;
+    }
 
 
-    private ArrayList<TimeTable> list;
+
+        private ArrayList<TimeTable> list;
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-    DatabaseReference myRef = database.getReference("groups").child("0").child("timetable").child("0").child("0");
+    DatabaseReference myRef = database.getReference("groups").child("0").child("timetable").child(IsOdd()).child("0");
 
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        DatabaseReference myRef = database.getReference("groups").child(load()).child("timetable").child("0").child("0");
+        DatabaseReference myRef = database.getReference("groups").child(load()).child("timetable").child(IsOdd()).child("0");
 
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
@@ -118,7 +125,7 @@ public class HomeFragment extends Fragment {
                 buttonWednesday.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 buttonFriday.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 buttonsScrollView.scrollTo(0, 0);
-                DatabaseReference myRef = database.getReference("groups").child(load()).child("timetable").child("0").child("0");
+                DatabaseReference myRef = database.getReference("groups").child(load()).child("timetable").child(IsOdd()).child("0");
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -155,8 +162,7 @@ public class HomeFragment extends Fragment {
                 buttonWednesday.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 buttonFriday.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 buttonsScrollView.scrollTo(buttonMonday.getWidth() - 20, 0);
-                DatabaseReference myRef = database.getReference("groups").child(load()).child("timetable").child("0").child("1");
-
+                DatabaseReference myRef = database.getReference("groups").child(load()).child("timetable").child(IsOdd()).child("1");
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -189,7 +195,7 @@ public class HomeFragment extends Fragment {
                 buttonWednesday.setTypeface(Typeface.DEFAULT_BOLD);
                 buttonFriday.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 buttonsScrollView.scrollTo(buttonThursday.getWidth() + buttonMonday.getWidth() + 50, 0);
-                DatabaseReference myRef = database.getReference("groups").child(load()).child("timetable").child("0").child("2");
+                DatabaseReference myRef = database.getReference("groups").child(load()).child("timetable").child(IsOdd()).child("2");
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -223,7 +229,7 @@ public class HomeFragment extends Fragment {
                 buttonThursday.setTypeface(Typeface.DEFAULT_BOLD);
                 buttonFriday.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 buttonsScrollView.scrollTo(buttonThursday.getWidth() + buttonMonday.getWidth() + buttonWednesday.getWidth() + 50, 0);
-                DatabaseReference myRef = database.getReference("groups").child(load()).child("timetable").child("0").child("3");
+                DatabaseReference myRef = database.getReference("groups").child(load()).child("timetable").child(IsOdd()).child("3");
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -257,7 +263,7 @@ public class HomeFragment extends Fragment {
                 buttonWednesday.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 buttonFriday.setTypeface(Typeface.DEFAULT_BOLD);
                 buttonsScrollView.scrollTo(buttonThursday.getWidth() + buttonMonday.getWidth() + buttonWednesday.getWidth() + buttonThursday.getWidth() + 50, 0);
-                DatabaseReference myRef = database.getReference("groups").child(load()).child("timetable").child("0").child("4");
+                DatabaseReference myRef = database.getReference("groups").child(load()).child("timetable").child(IsOdd()).child("4");
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
