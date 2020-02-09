@@ -155,7 +155,8 @@ public class ToolsFragment extends Fragment {
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
-                                save( "xuyna"+faculty_id);
+
+                                save(faculty_id);
                                 System.out.println(load());
 
 

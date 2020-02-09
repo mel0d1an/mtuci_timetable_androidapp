@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment {
         return "0";
     }
 
-    public String load() {
+    private String load() {
         FileInputStream fis = null;
 
         try {
@@ -56,7 +56,7 @@ public class HomeFragment extends Fragment {
             String text;
 
             while ((text = br.readLine()) != null) {
-                sb.append(text).append("\n");
+                sb.append(text);
             }
 
             return sb.toString();
@@ -90,14 +90,9 @@ public class HomeFragment extends Fragment {
 
 
 
-
-
-
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        System.out.println(load());
-        DatabaseReference myRef = database.getReference("groups").child(load()).child("timetable").child("0").child(getDayNum());
+        DatabaseReference myRef = database.getReference("groups").child(load()).child("timetable").child("0").child("0");
 
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
@@ -161,10 +156,7 @@ public class HomeFragment extends Fragment {
                 buttonFriday.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 buttonsScrollView.scrollTo(buttonMonday.getWidth() - 20, 0);
                 DatabaseReference myRef = database.getReference("groups").child(load()).child("timetable").child("0").child("1");
-                String group_id = load();
-                System.out.println(group_id);
-                System.out.println(load());
-                System.out.println(getContext().getFilesDir());
+
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
