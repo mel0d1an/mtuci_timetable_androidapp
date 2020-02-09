@@ -66,7 +66,7 @@ public class ToolsFragment extends Fragment {
         FileInputStream fis = null;
 
         try {
-            fis = getContext().openFileInput(getContext().getFilesDir()+"config.json");
+            fis = getContext().openFileInput("config.json");
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(isr);
             StringBuilder sb = new StringBuilder();
@@ -95,7 +95,7 @@ public class ToolsFragment extends Fragment {
             }
 
         }
-        return "123";
+        return "0";
     }
 
 
@@ -148,17 +148,15 @@ public class ToolsFragment extends Fragment {
                                 ArrayAdapter<String> LTRadapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item,group_list);
                                 LTRadapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
                                 spinnerGroups.setAdapter(LTRadapter);
-                                File file = new File( getContext().getFilesDir() + "config.json");
-                                System.out.println(file.toString());
+                                File file = new File( "config.json");
+
                                 try {
                                     file.createNewFile();
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
-                                save(faculty_id);
-                                System.out.println(faculty_id);
+                                save( "xuyna"+faculty_id);
                                 System.out.println(load());
-                                System.out.println(getContext().getFilesDir());
 
 
 

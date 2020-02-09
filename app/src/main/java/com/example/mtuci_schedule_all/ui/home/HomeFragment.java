@@ -49,7 +49,7 @@ public class HomeFragment extends Fragment {
         FileInputStream fis = null;
 
         try {
-            fis = getContext().openFileInput(getContext().getFilesDir()+"config.json");
+            fis = getContext().openFileInput("config.json");
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(isr);
             StringBuilder sb = new StringBuilder();
@@ -63,11 +63,11 @@ public class HomeFragment extends Fragment {
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            return "0";
+
 
         } catch (IOException e) {
             e.printStackTrace();
-            return "0";
+
         } finally {
             if (fis != null) {
                 try {
@@ -76,32 +76,34 @@ public class HomeFragment extends Fragment {
                     e.printStackTrace();
                 }
             }
-            return "0";
-        }
 
+        }
+        return "0";
     }
 
 
     private ArrayList<TimeTable> list;
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
-    String group_id;
+
+    DatabaseReference myRef = database.getReference("groups").child("0").child("timetable").child("0").child("0");
 
 
 
 
 
-    private DatabaseReference myRef = database.getReference("groups").child("0").child("timetable").child("0").child(getDayNum());
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        System.out.println(load());
+        DatabaseReference myRef = database.getReference("groups").child(load()).child("timetable").child("0").child(getDayNum());
 
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         final RecyclerView recyclerviewTimetable = root.findViewById(R.id.recyclerviewTimetable);
         list = new ArrayList<>();
-        group_id = "0668";
+
 
         final HorizontalScrollView buttonsScrollView = root.findViewById(R.id.horizontalScrollView);
         final Button buttonMonday = root.findViewById(R.id.buttonMonday);
@@ -113,7 +115,7 @@ public class HomeFragment extends Fragment {
         buttonMonday.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println(getDayNum());
+                System.out.println(load());
                 list.clear();
                 buttonMonday.setTypeface(Typeface.DEFAULT_BOLD);
                 buttonTuesday.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
@@ -121,7 +123,7 @@ public class HomeFragment extends Fragment {
                 buttonWednesday.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 buttonFriday.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 buttonsScrollView.scrollTo(0, 0);
-                DatabaseReference myRef = database.getReference("groups").child("0").child("timetable").child("0").child("0");
+                DatabaseReference myRef = database.getReference("groups").child(load()).child("timetable").child("0").child("0");
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -158,7 +160,7 @@ public class HomeFragment extends Fragment {
                 buttonWednesday.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 buttonFriday.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 buttonsScrollView.scrollTo(buttonMonday.getWidth() - 20, 0);
-                DatabaseReference myRef = database.getReference("groups").child("0").child("timetable").child("0").child("1");
+                DatabaseReference myRef = database.getReference("groups").child(load()).child("timetable").child("0").child("1");
                 String group_id = load();
                 System.out.println(group_id);
                 System.out.println(load());
@@ -195,7 +197,7 @@ public class HomeFragment extends Fragment {
                 buttonWednesday.setTypeface(Typeface.DEFAULT_BOLD);
                 buttonFriday.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 buttonsScrollView.scrollTo(buttonThursday.getWidth() + buttonMonday.getWidth() + 50, 0);
-                DatabaseReference myRef = database.getReference("groups").child("0").child("timetable").child("0").child("2");
+                DatabaseReference myRef = database.getReference("groups").child(load()).child("timetable").child("0").child("2");
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -229,7 +231,7 @@ public class HomeFragment extends Fragment {
                 buttonThursday.setTypeface(Typeface.DEFAULT_BOLD);
                 buttonFriday.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 buttonsScrollView.scrollTo(buttonThursday.getWidth() + buttonMonday.getWidth() + buttonWednesday.getWidth() + 50, 0);
-                DatabaseReference myRef = database.getReference("groups").child("0").child("timetable").child("0").child("3");
+                DatabaseReference myRef = database.getReference("groups").child(load()).child("timetable").child("0").child("3");
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -263,7 +265,7 @@ public class HomeFragment extends Fragment {
                 buttonWednesday.setTypeface(Typeface.defaultFromStyle(Typeface.NORMAL));
                 buttonFriday.setTypeface(Typeface.DEFAULT_BOLD);
                 buttonsScrollView.scrollTo(buttonThursday.getWidth() + buttonMonday.getWidth() + buttonWednesday.getWidth() + buttonThursday.getWidth() + 50, 0);
-                DatabaseReference myRef = database.getReference("groups").child("0").child("timetable").child("0").child("4");
+                DatabaseReference myRef = database.getReference("groups").child(load()).child("timetable").child("0").child("4");
                 myRef.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
