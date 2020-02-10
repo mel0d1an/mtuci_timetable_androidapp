@@ -30,6 +30,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -45,6 +47,7 @@ public class HomeFragment extends Fragment {
         }
         return "0";
     }
+
 
     private String load() {
         FileInputStream fis = null;
@@ -82,29 +85,44 @@ public class HomeFragment extends Fragment {
         return "0";
     }
     public String IsOdd(){
-        Calendar calendar = new GregorianCalendar();
-        calendar.setTime(new Date());
-        return calendar.get(Calendar.WEEK_OF_MONTH) % 2+"" ;
+        Date start = null;
+
+        try {
+            start = new SimpleDateFormat("dd/MM/yyyy").parse("01/09/2020");
+        } catch (ParseException exc) {
+            exc.printStackTrace();
+        }
+
+        long delay = System.currentTimeMillis() - start.getTime();
+        long week = 1000 * 60 * 60 * 24 * 7;
+        delay %= week * 2;
+
+        if (delay <= week)
+            return "1";
+        else
+            return "0";
+
     }
 
 
 
-        private ArrayList<TimeTable> list;
+    private ArrayList<TimeTable> list;
 
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     DatabaseReference myRef = database.getReference("groups").child("0").child("timetable").child(IsOdd()).child("0");
 
-
-
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         DatabaseReference myRef = database.getReference("groups").child(load()).child("timetable").child(IsOdd()).child("0");
-
+        System.currentTimeMillis();
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         final RecyclerView recyclerviewTimetable = root.findViewById(R.id.recyclerviewTimetable);
         list = new ArrayList<>();
+        Calendar calendar = Calendar.getInstance();
+        System.out.println("Georgian calendar odd "+calendar.get(Calendar.WEEK_OF_MONTH) % 2);
+        System.out.println("Georgian calendar w "+calendar.get(Calendar.WEEK_OF_MONTH));
 
 
         final HorizontalScrollView buttonsScrollView = root.findViewById(R.id.horizontalScrollView);
